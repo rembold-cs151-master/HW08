@@ -17,3 +17,5 @@ The homework pdf has the basic instructions, and you should definitely read the 
 __Remember to fill out the commented metadata at the top of each Python script!__
 
 #### Testing
+ - Prob2: All methods and general operations will be tested. Make sure you named the data attribute for your queue `self.q` as I assume that when I'm checking for lengths of the queue.
+ - Prob3: All methods will be tested. Do **not** reduce any solutions anywhere in your methods besides the `reduce` method. Clearly in cases this would be desirable, but it makes the error checking more difficult in this case.
