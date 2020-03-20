@@ -5,10 +5,8 @@
 # correctly! Please do not change!
 
 
-import mock
 import pytest
 import os
-import random
 
 import Prob2
 import Prob3
@@ -47,14 +45,14 @@ class Test_Prob2:
         x.add(3)
         value = x.remove()
         assert len(x.q) == 2, 'Value was not actually removed from the queue?'
-        assert value == 1, 'Incorrect value returned from queue. Expected "1" and got "3".'
+        assert value == 1, f'Incorrect value returned from queue. Expected "1" and got "{value}".'
 
     def test_q_empty(self):
         x = Prob2.Queue()
         x.add('bazinga')
         v = x.remove()
         v = x.remove()
-        assert v == 'The queue is empty!', 'Method not handling empty queue properly!'
+        assert v == 'The queue is empty!', 'Method not handling an empty queue properly! Are you returning the exact string correctly?'
 
 
 class Test_Prob3:
@@ -83,6 +81,7 @@ class Test_Prob3:
         for key in vals:
             A = Prob3.Fraction(*key)
             assert str(A.reduce()) == vals[key], f'The fraction of Fraction{key} did not properly reduce to a printed value of {vals[key]}.'
+            assert isinstance(A.reduce(), Prob3.Fraction), 'You should still be returning a Fraction type object, but you are not.'
 
     def test_reduces_proper_mutability(self):
         A = Prob3.Fraction(4,8)
@@ -109,6 +108,7 @@ class Test_Prob3:
         for key in vals:
             A = Prob3.Fraction(*key)
             assert str(A.inverse()) == vals[key], f'The inverse is not correct. Should be {vals[key]} but is getting a printed value of {str(A.inverse())}'
+            assert isinstance(A.inverse(), Prob3.Fraction), 'You should be returning a Fraction object type.'
 
     def test_multiply_fractions(self):
         vals = {
@@ -120,6 +120,7 @@ class Test_Prob3:
             A = Prob3.Fraction(*key[0])
             B = Prob3.Fraction(*key[1])
             assert str(A*B) == vals[key], f'Multiplying Fraction{key[0]} by Fraction{key[1]} should equal {vals[key]} but is equaling {str(A*B)}'
+            assert isinstance(A*B, Prob3.Fraction), 'Multiplying two fractions should return an object of type Fraction.'
 
 
     def test_multiply_fraction_by_integer(self):
@@ -133,6 +134,7 @@ class Test_Prob3:
             B = key[1]
             assert str(A*B) == vals[key], f'Multiplying Fraction{key[0]} by {key[1]} should give {vals[key]} but instead gives {str(A*B)}.'
             assert str(B*A) == vals[key], f'Multiplying {key[1]} by Fraction{key[0]} should give {vals[key]} but instead gives {str(A*B)}.'
+            assert isinstance(A*B, Prob3.Fraction), 'Multiplying a fraction by an integer should return an object of type Fraction.'
 
     def test_divide_by_fraction(self):
         vals = {
@@ -144,6 +146,7 @@ class Test_Prob3:
             A = Prob3.Fraction(*key[0])
             B = Prob3.Fraction(*key[1])
             assert str(A/B) == vals[key], f'Dividing Fraction{key[0]} by Fraction{key[1]} should equal {vals[key]} but is equaling {str(A/B)}'
+            assert isinstance(A*B, Prob3.Fraction), 'Dividing a fraction by another fraction should return an object of type Fraction.'
     
     def test_divide_by_integer(self):
         vals = {
@@ -155,3 +158,4 @@ class Test_Prob3:
             A = Prob3.Fraction(*key[0])
             B = key[1]
             assert str(A/B) == vals[key], f'Dividing Fraction{key[0]} by {key[1]} should equal {vals[key]} but is equaling {str(A/B)}'
+            assert isinstance(A*B, Prob3.Fraction), 'Dividing a fraction by an integer should return an object of type Fraction.'
